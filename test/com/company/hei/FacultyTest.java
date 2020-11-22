@@ -1,5 +1,6 @@
 package com.company.hei;
 
+import com.company.HashCodeTestClass;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -14,11 +15,7 @@ class FacultyTest {
     Faculty obj = new Faculty("Shaq");
 
     @Test
-    void addDepartment() {
-    }
-
-    @Test
-    void getDepartmentsList() {
+    void getDepartmentsListAddDepartmentTest() {
         assertFalse(obj.getDepartmentsList());
         String name = "My string";
         String expected = "My@@ string\n" +
@@ -32,7 +29,8 @@ class FacultyTest {
         ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
 
-        obj.addDepartment();
+        assertTrue(obj.addDepartment());
+        assertFalse(obj.addDepartment());
 
         System.setIn(sysInBackup);
 
@@ -51,6 +49,9 @@ class FacultyTest {
 
     @Test
     void testEquals() {
+        HashCodeTestClass O = new HashCodeTestClass();
+        O.hashcode = s2.hashCode();
+        assertFalse(s2.equals(O));
         assertEquals(s1, s2);
         assertNotEquals(obj, s1);
     }

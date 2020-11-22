@@ -1,5 +1,7 @@
 package com.company.hei;
 
+import com.company.Input;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,19 +19,21 @@ public class HigherEducationalInstitution extends Institution {
         return faculties.stream().anyMatch(o -> o.getName().equals(obName));
     }
 
-    public void addFaculty() {
+    public boolean addFaculty() {
         Faculty faculty = new Faculty();
-        while ( lookUp(faculty.getName()) ) {
+        if(lookUp(faculty.getName())) {
             System.out.println("This institution already has this faculty ");
-            faculty = new Faculty();
+            return false;
+        } else {
+            faculties.add(faculty);
+            return true;
         }
-        faculties.add(faculty);
     }
 
     public void addDepartment() {
         if(getFacList()) {
             System.out.println("\nWhere do you want to put new department? (pick the faculty)");
-            int num = in.inputInt("Please enter the number from the list (-1 to cancel):",
+            int num = Input.inputInt("Please enter the number from the list (-1 to cancel):",
                     1,
                     faculties.size()) - 1;
             if(num == -1) return;

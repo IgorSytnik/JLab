@@ -18,13 +18,15 @@ public class Faculty extends Institution {
         return departments.stream().anyMatch(o -> o.getName().equals(obName));
     }
 
-    public void addDepartment() {
+    public boolean addDepartment() {
         Department department = new Department();
-        while ( lookUp(department.getName()) ) {
+        if(lookUp(department.getName())) {
             System.out.println("This faculty already has this department ");
-            department = new Department();
+            return false;
+        } else {
+            departments.add(department);
+            return true;
         }
-        departments.add(department);
     }
 
     public boolean getDepartmentsList() {

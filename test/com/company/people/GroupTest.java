@@ -1,6 +1,6 @@
 package com.company.people;
 
-import com.company.hei.HigherEducationalInstitution;
+import com.company.HashCodeTestClass;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -60,24 +60,8 @@ class GroupTest {
         ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
 
-        g3.addStudent();
-//        System.setIn(sysInBackup);
-//
-//        expected =
-//                "-2\n" +
-//                        "n\n" +
-//                        "0\n" +
-//                        "n\n" +
-//                        "FMA\n" +
-//                        "2\n" +
-//                        "n\n" +
-//                        num + "\n" +
-//                        "y\n" +
-//                        (num + 1) + "\n" +
-//                        "y\n";
-//        in = new ByteArrayInputStream(expected.getBytes());
-//        System.setIn(in);
-//        g3.addStudent();
+        assertTrue(g3.addStudent());
+        assertFalse(g3.addStudent());
 
         assertEquals(num + ", group: " + "HH-11" + ", year: " + year, g3.getStudent(0).toString());
         System.setIn(sysInBackup);
@@ -148,6 +132,9 @@ class GroupTest {
 
     @Test
     void testEquals() {
+        HashCodeTestClass O = new HashCodeTestClass();
+        O.hashcode = g2.hashCode();
+        assertFalse(g2.equals(O));
         assertEquals(g1, g2);
         assertNotEquals(g3, g1);
     }

@@ -1,5 +1,6 @@
 package com.company.people;
 
+import com.company.HashCodeTestClass;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,6 +28,9 @@ class StudentTest {
 
     @Test
     void testEquals() {
+        HashCodeTestClass O = new HashCodeTestClass();
+        O.hashcode = s2.hashCode();
+        assertFalse(s2.equals(O));
         assertEquals(s1, s2);
         assertNotEquals(s3, s1);
     }

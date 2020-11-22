@@ -4,14 +4,14 @@ import java.util.Comparator;
 
 public abstract class ClassWithName implements Name {
     //TODO 2 name
-    protected Input in = new Input();
+//    protected Input in = new Input();
     protected String name;
 
     // Used for sorting in ascending order
     protected Comparator<ClassWithName> NameComparator = Comparator.comparing(ClassWithName::getName);
 
     public String enterName(String question, String regex) {
-        String[] arrstr = in.inputString(question, regex).split("\\s+");
+        String[] arrstr = Input.inputString(question, regex).split("\\s+");
         StringBuilder buildstr = new StringBuilder(arrstr[0]);
         if (arrstr.length > 1) {
             for (int i = 1; i < arrstr.length; i++) {

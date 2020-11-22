@@ -1,5 +1,6 @@
 package com.company.people;
 
+import com.company.HashCodeTestClass;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -29,7 +30,8 @@ class TeacherTest {
                 num + "\n" +
                 "y\n";
         InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+        InputStream in = new ByteArrayInputStream(expected.getBytes());
+        in.mark(0);
         System.setIn(in);
 
         Teacher obj = new Teacher();
@@ -53,6 +55,9 @@ class TeacherTest {
 
     @Test
     void testEquals() {
+        HashCodeTestClass O = new HashCodeTestClass();
+        O.hashcode = t2.hashCode();
+        assertFalse(t2.equals(O));
         assertTrue(t2.equals(t1));
         assertFalse(t1.equals(t3));
     }

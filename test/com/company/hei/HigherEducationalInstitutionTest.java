@@ -1,5 +1,6 @@
 package com.company.hei;
 
+import com.company.HashCodeTestClass;
 import com.company.people.Group;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +38,7 @@ class HigherEducationalInstitutionTest {
     }
 
     @Test
-    void addFaculty() {
+    void addFacultyAndGetFacultyTest() {
         String name = "My string";
         String expected = "My@@ string\n" +
                 "My string.\n" +
@@ -53,15 +54,11 @@ class HigherEducationalInstitutionTest {
         obj.addFaculty();
         assertEquals(name, obj.getFaculty(0).getName());
 
-//        HigherEducationalInstitution hei = new HigherEducationalInstitution(name);
-//        list.add(hei);
-//        assertTrue(obj.getList(list, "fff"));
-
         System.setIn(sysInBackup);
     }
 
     @Test
-    void addDepartment() {
+    void addDepartmentAndGetDepartmentTest() {
         obj.addDepartment();
         String name = "1";
         String expected = "1\n" +
@@ -84,7 +81,7 @@ class HigherEducationalInstitutionTest {
     }
 
     @Test
-    void getFacList() {
+    void getFacListTest() {
         assertFalse(obj.getFacList());
         String name = "My string";
         String expected = "My@@ string\n" +
@@ -98,15 +95,12 @@ class HigherEducationalInstitutionTest {
         ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
 
-        obj.addFaculty();
+        assertTrue(obj.addFaculty());
+        assertFalse(obj.addFaculty());
 
         System.setIn(sysInBackup);
 
         assertTrue(obj.getFacList());
-    }
-
-    @Test
-    void getFaculty() {
     }
 
     @Test
@@ -117,6 +111,9 @@ class HigherEducationalInstitutionTest {
 
     @Test
     void testEquals() {
+        HashCodeTestClass O = new HashCodeTestClass();
+        O.hashcode = g2.hashCode();
+        assertFalse(g2.equals(O));
         assertEquals(g1, g2);
         assertNotEquals(obj, g1);
     }

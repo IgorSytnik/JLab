@@ -1,13 +1,14 @@
 package com.company.people;
 
 import com.company.ClassWithName;
+import com.company.Input;
 
 public class Teacher extends ClassWithName {
     private AcademicPosition position;
     public Teacher() {
         this.name = this.enterName();
         AcademicPosition[] val = AcademicPosition.values();
-        this.position = val[in.inputInt(
+        this.position = val[Input.inputInt(
                 AcademicPosition.list() + "\nPlease enter the number of teacher's position from the list above:"
                 , 1
                 , val.length

@@ -1,5 +1,6 @@
 package com.company.hei;
 
+import com.company.HashCodeTestClass;
 import com.company.people.AcademicPosition;
 import com.company.people.Group;
 import com.company.people.Student;
@@ -85,7 +86,8 @@ class DepartmentTest {
         ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
 
-        obj.addGroup();
+        assertTrue(obj.addGroup());
+        assertFalse(obj.addGroup());
 
         System.setIn(sysInBackup);
 
@@ -111,7 +113,8 @@ class DepartmentTest {
         ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
 
-        obj.addTeacher();
+        assertTrue(obj.addTeacher());
+        assertFalse(obj.addTeacher());
 
         System.setIn(sysInBackup);
 
@@ -134,6 +137,9 @@ class DepartmentTest {
 
     @Test
     void testEquals() {
+        HashCodeTestClass O = new HashCodeTestClass();
+        O.hashcode = s2.hashCode();
+        assertFalse(s2.equals(O));
         assertEquals(s1, s2);
         assertNotEquals(obj, s1);
     }

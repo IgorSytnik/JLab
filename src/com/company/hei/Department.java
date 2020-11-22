@@ -22,22 +22,26 @@ public class Department extends Institution {
                 groups.stream().anyMatch(o -> o.getYear() == year);
     }
 
-    public void addGroup() {
+    public boolean addGroup() {
         Group group = new Group();
-        while ( lookUp(group.getName(), group.getYear()) ) {
+        if(lookUp(group.getName(), group.getYear())) {
             System.out.println("This department already has this group ");
-            group = new Group();
+            return false;
+        } else {
+            groups.add(group);
+            return true;
         }
-        groups.add(group);
     }
 
-    public void addTeacher() {
+    public boolean addTeacher() {
         Teacher teacher = new Teacher();
-        while (teachers.contains(teacher)) {
+        if(teachers.contains(teacher)) {
             System.out.println("This department already has this Teacher ");
-            teacher = new Teacher();
+            return false;
+        } else {
+            teachers.add(teacher);
+            return true;
         }
-        teachers.add(teacher);
     }
 
     public boolean getGroupsList() {
