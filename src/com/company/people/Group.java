@@ -3,6 +3,7 @@ package com.company.people;
 import com.company.ClassWithName;
 import com.company.Input;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +12,7 @@ public class Group extends ClassWithName {
     private List<Student> students = new ArrayList<>();
     private int year;
 
-    public Group() {
+    public Group() throws IOException {
         this.name = this.enterName("Please enter group name (example: \"XX-11\"):", "\\p{Alpha}+-\\d+");
         this.year = Input.inputInt("Please enter group year (from 1 to 6):", 1, 6);
     }
@@ -21,7 +22,7 @@ public class Group extends ClassWithName {
         this.year = y;
     }
 
-    public boolean addStudent() {
+    public boolean addStudent() throws IOException {
         Student student = new Student(name, year);
         if(students.contains(student)) {
             System.out.println("This group already has this student ");

@@ -3,6 +3,7 @@ package com.company;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,12 +12,12 @@ class ClassWithNameTest {
 
     private ClassWithName obj = new ClassWithName() {
         @Override
-        public String enterName(String question, String regex) {
+        public String enterName(String question, String regex) throws IOException {
             return super.enterName(question, regex);
         }
 
         @Override
-        public String enterName() {
+        public String enterName() throws IOException {
             return super.enterName();
         }
 
@@ -32,7 +33,7 @@ class ClassWithNameTest {
     };
 
     @Test
-    void enterName() {
+    void enterName() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                         "My string.\n" +
@@ -50,7 +51,7 @@ class ClassWithNameTest {
     }
 
     @Test
-    void testEnterName() {
+    void testEnterName() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                 "My string.\n" +

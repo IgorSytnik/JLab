@@ -3,9 +3,11 @@ package com.company.people;
 import com.company.ClassWithName;
 import com.company.Input;
 
+import java.io.IOException;
+
 public class Teacher extends ClassWithName {
     private AcademicPosition position;
-    public Teacher() {
+    public Teacher() throws IOException {
         this.name = this.enterName();
         AcademicPosition[] val = AcademicPosition.values();
         this.position = val[Input.inputInt(

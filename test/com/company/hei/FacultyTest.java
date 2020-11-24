@@ -4,6 +4,7 @@ import com.company.HashCodeTestClass;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +16,7 @@ class FacultyTest {
     Faculty obj = new Faculty("Shaq");
 
     @Test
-    void getDepartmentsListAddDepartmentTest() {
+    void getDepartmentsListAddDepartmentTest() throws IOException {
         assertFalse(obj.getDepartmentsList());
         String name = "My string";
         String expected = "My@@ string\n" +
@@ -35,10 +36,6 @@ class FacultyTest {
         System.setIn(sysInBackup);
 
         assertTrue(obj.getDepartmentsList());
-    }
-
-    @Test
-    void getDepartment() {
     }
 
     @Test

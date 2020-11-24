@@ -4,6 +4,7 @@ import com.company.HashCodeTestClass;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +17,7 @@ class TeacherTest {
     Teacher t3 = new Teacher("Bigu", AcademicPosition.DOCTORAL_STUDENT);
 
     @Test
-    void testInit() {
+    void testInit() throws IOException {
         String name = "1";
         int num = 1;
         String expected =

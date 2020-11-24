@@ -7,6 +7,7 @@ import com.company.people.Student;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +19,7 @@ class DepartmentTest {
     Department obj = new Department("Bigu");
 
     @Test
-    void addGroup() {
+    void addGroup() throws IOException {
         String name = "XX-11";
         int num = 1;
         String expected =
@@ -43,7 +44,7 @@ class DepartmentTest {
     }
 
     @Test
-    void addTeacher() {
+    void addTeacher() throws IOException {
         String name = "1";
         int num = 1;
         String expected =
@@ -67,7 +68,7 @@ class DepartmentTest {
     }
 
     @Test
-    void getGroupsList() {
+    void getGroupsList() throws IOException {
         assertFalse(obj.getGroupsList());
         String name = "XX-11";
         int num = 1;
@@ -95,7 +96,7 @@ class DepartmentTest {
     }
 
     @Test
-    void getTeachersList() {
+    void getTeachersList() throws IOException {
         assertFalse(obj.getTeachersList());
         String name = "1";
         int num = 1;
@@ -119,14 +120,6 @@ class DepartmentTest {
         System.setIn(sysInBackup);
 
         assertTrue(obj.getTeachersList());
-    }
-
-    @Test
-    void getGroup() {
-    }
-
-    @Test
-    void getTeacher() {
     }
 
     @Test

@@ -1,12 +1,13 @@
 package com.company.hei;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Faculty extends Institution {
     private List<Department> departments = new ArrayList<>();
 
-    public Faculty() {
+    public Faculty() throws IOException {
         this.name = this.enterName();
     }
 
@@ -18,7 +19,7 @@ public class Faculty extends Institution {
         return departments.stream().anyMatch(o -> o.getName().equals(obName));
     }
 
-    public boolean addDepartment() {
+    public boolean addDepartment() throws IOException {
         Department department = new Department();
         if(lookUp(department.getName())) {
             System.out.println("This faculty already has this department ");

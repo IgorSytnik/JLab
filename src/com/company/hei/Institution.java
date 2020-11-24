@@ -2,6 +2,7 @@ package com.company.hei;
 
 import com.company.ClassWithName;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 public abstract class Institution extends ClassWithName {
 
     @Override
-    public String enterName() {
+    public String enterName() throws IOException {
         return this.enterName("Please enter the name:", "[a-zA-Z_0-9\\s]+");
     }
 

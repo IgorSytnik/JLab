@@ -4,6 +4,7 @@ import com.company.ClassWithName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class InstitutionTest {
     Institution obj = new Institution() {
         @Override
-        public String enterName() {
+        public String enterName() throws IOException {
             return super.enterName();
         }
 
@@ -30,7 +31,7 @@ class InstitutionTest {
     };
 
     @Test
-    void enterName() {
+    void enterName() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                 "My string.\n" +

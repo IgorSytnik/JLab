@@ -4,6 +4,7 @@ import com.company.HashCodeTestClass;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ class GroupTest {
 
 
     @Test
-    void testInit() {
+    void testInit() throws IOException {
         String name = "XX-11";
         int num = 1;
         String expected =
@@ -44,7 +45,7 @@ class GroupTest {
     }
 
     @Test
-    void addStudent() {
+    void addStudent() throws IOException {
         int num = 1;
         String expected =
                 "-2\n" +
@@ -68,7 +69,7 @@ class GroupTest {
     }
 
     @Test
-    void getStudentsList() {
+    void getStudentsList() throws IOException {
         assertFalse(g3.getStudentsList());
 
         String name = "My string";
@@ -90,7 +91,7 @@ class GroupTest {
     }
 
     @Test
-    void getStudent() {
+    void getStudent() throws IOException {
         assertNull(g3.getStudent(3));
 
         String name = "My string";

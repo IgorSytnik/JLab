@@ -19,16 +19,4 @@ class AcademicPositionTest {
         assertEquals(str.toString(), AcademicPosition.list());
 
     }
-
-    @Test
-    void testToString() {
-    }
-
-    @Test
-    void values() {
-    }
-
-    @Test
-    void valueOf() {
-    }
 }

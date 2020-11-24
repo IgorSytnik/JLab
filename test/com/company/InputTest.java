@@ -2,33 +2,25 @@ package com.company;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.io.ByteArrayInputStream;
 
 class InputTest {
 
     @Test
-    void inputString() {
+    void inputString() throws IOException {
         String expected = "sdfsfsdf\ny";
         InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
-        in.mark(0);
+        InputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
-        Input.inputString("Please enter full name:", "[a-zA-Z_0-9\\s]+");
-//        Throwable thrown = assertThrows(IOException.class, () -> {
-//            Input.inputString("Please enter full name:", "[a-zA-Z_0-9\\s]+");
-//        });
 
-//        expectedException(g3.getStudent(3));
-//        assertNotNull(g3.getStudent(0));
+        Input.inputString("Please enter full name:", "[a-zA-Z_0-9\\s]+");
+
+        Input.inputString("Please enter full name:", "[a-zA-Z_0-9\\s]+");
 
         System.setIn(sysInBackup);
     }
 
-    @Test
-    void inputInt() {
-    }
 }

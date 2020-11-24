@@ -2,13 +2,14 @@ package com.company.hei;
 
 import com.company.Input;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HigherEducationalInstitution extends Institution {
     private List<Faculty> faculties = new ArrayList<>();
 
-    public HigherEducationalInstitution() {
+    public HigherEducationalInstitution() throws IOException {
         this.name = this.enterName();
     }
     public HigherEducationalInstitution(String n) {
@@ -19,7 +20,7 @@ public class HigherEducationalInstitution extends Institution {
         return faculties.stream().anyMatch(o -> o.getName().equals(obName));
     }
 
-    public boolean addFaculty() {
+    public boolean addFaculty() throws IOException {
         Faculty faculty = new Faculty();
         if(lookUp(faculty.getName())) {
             System.out.println("This institution already has this faculty ");
@@ -30,7 +31,7 @@ public class HigherEducationalInstitution extends Institution {
         }
     }
 
-    public void addDepartment() {
+    public void addDepartment() throws IOException {
         if(getFacList()) {
             System.out.println("\nWhere do you want to put new department? (pick the faculty)");
             int num = Input.inputInt("Please enter the number from the list (-1 to cancel):",

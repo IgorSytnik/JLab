@@ -5,6 +5,7 @@ import com.company.people.Group;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ class HigherEducationalInstitutionTest {
     HigherEducationalInstitution obj = new HigherEducationalInstitution("Tim Shaq");
 
     @Test
-    void testInit() {
+    void testInit() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                 "My string.\n" +
@@ -38,7 +39,7 @@ class HigherEducationalInstitutionTest {
     }
 
     @Test
-    void addFacultyAndGetFacultyTest() {
+    void addFacultyAndGetFacultyTest() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                 "My string.\n" +
@@ -58,7 +59,7 @@ class HigherEducationalInstitutionTest {
     }
 
     @Test
-    void addDepartmentAndGetDepartmentTest() {
+    void addDepartmentAndGetDepartmentTest() throws IOException {
         obj.addDepartment();
         String name = "1";
         String expected = "1\n" +
@@ -81,7 +82,7 @@ class HigherEducationalInstitutionTest {
     }
 
     @Test
-    void getFacListTest() {
+    void getFacListTest() throws IOException {
         assertFalse(obj.getFacList());
         String name = "My string";
         String expected = "My@@ string\n" +

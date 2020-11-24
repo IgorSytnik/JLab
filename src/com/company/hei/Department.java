@@ -3,6 +3,7 @@ package com.company.hei;
 import com.company.people.Group;
 import com.company.people.Teacher;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class Department extends Institution {
     private List<Group> groups = new ArrayList<>();
     private List<Teacher> teachers = new ArrayList<>();
 
-    public Department() {
+    public Department() throws IOException {
         this.name = this.enterName();
     }
     public Department(String n) {
@@ -22,7 +23,7 @@ public class Department extends Institution {
                 groups.stream().anyMatch(o -> o.getYear() == year);
     }
 
-    public boolean addGroup() {
+    public boolean addGroup() throws IOException {
         Group group = new Group();
         if(lookUp(group.getName(), group.getYear())) {
             System.out.println("This department already has this group ");
@@ -33,7 +34,7 @@ public class Department extends Institution {
         }
     }
 
-    public boolean addTeacher() {
+    public boolean addTeacher() throws IOException {
         Teacher teacher = new Teacher();
         if(teachers.contains(teacher)) {
             System.out.println("This department already has this Teacher ");

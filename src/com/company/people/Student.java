@@ -2,10 +2,12 @@ package com.company.people;
 
 import com.company.ClassWithName;
 
+import java.io.IOException;
+
 public class Student extends ClassWithName {
     private String group;
     private int year;
-    public Student(String g, int y) {
+    public Student(String g, int y) throws IOException {
         this.group = g;
         this.year = y;
         this.name = this.enterName();

@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.IOException;
 import java.util.Comparator;
 
 public abstract class ClassWithName implements Name {
@@ -10,7 +11,7 @@ public abstract class ClassWithName implements Name {
     // Used for sorting in ascending order
     protected Comparator<ClassWithName> NameComparator = Comparator.comparing(ClassWithName::getName);
 
-    public String enterName(String question, String regex) {
+    public String enterName(String question, String regex) throws IOException {
         String[] arrstr = Input.inputString(question, regex).split("\\s+");
         StringBuilder buildstr = new StringBuilder(arrstr[0]);
         if (arrstr.length > 1) {
@@ -22,7 +23,7 @@ public abstract class ClassWithName implements Name {
         return buildstr.toString();
     }
 
-    public String enterName() {
+    public String enterName() throws IOException {
         return enterName("Please enter full name:", "[a-zA-Z_0-9\\s]+");
     }
 
