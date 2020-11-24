@@ -17,7 +17,7 @@ class TeacherTest {
     Teacher t3 = new Teacher("Bigu", AcademicPosition.DOCTORAL_STUDENT);
 
     @Test
-    void testInit() throws IOException {
+    void initTest() throws IOException {
         String name = "1";
         int num = 1;
         String expected =
@@ -42,20 +42,20 @@ class TeacherTest {
     }
 
     @Test
-    void testToString() {
+    void toStringTest() {
         assertEquals(name + ", position: " + position, t1.toString());
         assertEquals(t2.toString(), t1.toString());
         assertEquals(t1.toString(), t1.toString());
     }
 
     @Test
-    void testHashCode() {
+    void hashCodeTest() {
         assertEquals(t1.hashCode(), t2.hashCode());
         assertEquals(t1.hashCode(), t1.hashCode());
     }
 
     @Test
-    void testEquals() {
+    void equalsTest() {
         HashCodeTestClass O = new HashCodeTestClass();
         O.hashcode = t2.hashCode();
         assertFalse(t2.equals(O));

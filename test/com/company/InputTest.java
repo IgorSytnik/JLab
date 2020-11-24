@@ -10,7 +10,7 @@ import java.io.ByteArrayInputStream;
 class InputTest {
 
     @Test
-    void inputString() throws IOException {
+    void inputStringTest() throws IOException {
         String expected = "sdfsfsdf\ny";
         InputStream sysInBackup = System.in; // backup System.in to restore it later
         InputStream in = new ByteArrayInputStream(expected.getBytes());

@@ -31,7 +31,7 @@ class InstitutionTest {
     };
 
     @Test
-    void enterName() throws IOException {
+    void enterNameTest() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                 "My string.\n" +
@@ -49,7 +49,7 @@ class InstitutionTest {
     }
 
     @Test
-    void getList() {
+    void getListTest() {
         String name = "My string";
         List<HigherEducationalInstitution> list = new ArrayList();
         assertFalse(obj.getList(list, "fff"));
@@ -61,7 +61,7 @@ class InstitutionTest {
     }
 
     @Test
-    void getOne() {
+    void getOneTest() {
         String name = "My string";
         List<HigherEducationalInstitution> list = new ArrayList();
         assertNull(obj.getOne(list, name, 1));

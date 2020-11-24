@@ -14,20 +14,20 @@ class StudentTest {
     Student s3 = new Student("Bigu", group, year);
 
     @Test
-    void testToString() {
+    void toStringTest() {
         assertEquals(name + ", group: " + group + ", year: " + year, s1.toString());
         assertEquals(s2.toString(), s1.toString());
         assertEquals(s1.toString(), s1.toString());
     }
 
     @Test
-    void testHashCode() {
+    void hashCodeTest() {
         assertEquals(s1.hashCode(), s2.hashCode());
         assertEquals(s1.hashCode(), s1.hashCode());
     }
 
     @Test
-    void testEquals() {
+    void equalsTest() {
         HashCodeTestClass O = new HashCodeTestClass();
         O.hashcode = s2.hashCode();
         assertFalse(s2.equals(O));

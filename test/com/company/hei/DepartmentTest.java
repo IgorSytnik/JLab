@@ -19,7 +19,7 @@ class DepartmentTest {
     Department obj = new Department("Bigu");
 
     @Test
-    void addGroup() throws IOException {
+    void addGroupTest() throws IOException {
         String name = "XX-11";
         int num = 1;
         String expected =
@@ -44,7 +44,7 @@ class DepartmentTest {
     }
 
     @Test
-    void addTeacher() throws IOException {
+    void addTeacherTest() throws IOException {
         String name = "1";
         int num = 1;
         String expected =
@@ -68,7 +68,7 @@ class DepartmentTest {
     }
 
     @Test
-    void getGroupsList() throws IOException {
+    void getGroupsListTest() throws IOException {
         assertFalse(obj.getGroupsList());
         String name = "XX-11";
         int num = 1;
@@ -96,7 +96,7 @@ class DepartmentTest {
     }
 
     @Test
-    void getTeachersList() throws IOException {
+    void getTeachersListTest() throws IOException {
         assertFalse(obj.getTeachersList());
         String name = "1";
         int num = 1;
@@ -123,13 +123,13 @@ class DepartmentTest {
     }
 
     @Test
-    void testHashCode() {
+    void hashCodeTest() {
         assertEquals(s1.hashCode(), s2.hashCode());
         assertEquals(s1.hashCode(), s1.hashCode());
     }
 
     @Test
-    void testEquals() {
+    void equalsTest() {
         HashCodeTestClass O = new HashCodeTestClass();
         O.hashcode = s2.hashCode();
         assertFalse(s2.equals(O));

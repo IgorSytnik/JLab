@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcademicPositionTest {
 
     @Test
-    void list() {
+    void listTest() {
         assertNotNull(AcademicPosition.list());
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < AcademicPosition.values().length; i++) {

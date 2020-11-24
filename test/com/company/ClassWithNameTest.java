@@ -33,7 +33,7 @@ class ClassWithNameTest {
     };
 
     @Test
-    void enterName() throws IOException {
+    void enterNameTest() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                         "My string.\n" +
@@ -51,7 +51,7 @@ class ClassWithNameTest {
     }
 
     @Test
-    void testEnterName() throws IOException {
+    void enterNameWithParametersTest() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                 "My string.\n" +
@@ -69,14 +69,14 @@ class ClassWithNameTest {
     }
 
     @Test
-    void setName() {
+    void setNameTest() {
         String expected = "Bruh";
         obj.setName(expected);
         assertEquals(expected, obj.getName());
     }
 
     @Test
-    void getName() {
+    void getNameTest() {
         String expected = "Bruh";
         obj.setName(expected);
         assertEquals(expected, obj.getName());

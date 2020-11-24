@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MainTest {
 
     @Test
-    void testMain() {
+    void mainTest() {
         String input = "";
         String[] args = null;
         final InputStream original = System.in;

@@ -105,13 +105,13 @@ class HigherEducationalInstitutionTest {
     }
 
     @Test
-    void testHashCode() {
+    void hashCodeTest() {
         assertEquals(g1.hashCode(), g2.hashCode());
         assertEquals(g1.hashCode(), g1.hashCode());
     }
 
     @Test
-    void testEquals() {
+    void equalsTest() {
         HashCodeTestClass O = new HashCodeTestClass();
         O.hashcode = g2.hashCode();
         assertFalse(g2.equals(O));

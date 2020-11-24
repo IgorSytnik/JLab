@@ -20,7 +20,7 @@ class GroupTest {
 
 
     @Test
-    void testInit() throws IOException {
+    void initTest() throws IOException {
         String name = "XX-11";
         int num = 1;
         String expected =
@@ -45,7 +45,7 @@ class GroupTest {
     }
 
     @Test
-    void addStudent() throws IOException {
+    void addStudentTest() throws IOException {
         int num = 1;
         String expected =
                 "-2\n" +
@@ -69,7 +69,7 @@ class GroupTest {
     }
 
     @Test
-    void getStudentsList() throws IOException {
+    void getStudentsListTest() throws IOException {
         assertFalse(g3.getStudentsList());
 
         String name = "My string";
@@ -91,7 +91,7 @@ class GroupTest {
     }
 
     @Test
-    void getStudent() throws IOException {
+    void getStudentTest() throws IOException {
         assertNull(g3.getStudent(3));
 
         String name = "My string";
@@ -114,25 +114,25 @@ class GroupTest {
     }
 
     @Test
-    void getYear() {
+    void getYearTest() {
         assertEquals(year, g1.getYear());
     }
 
     @Test
-    void testToString() {
+    void toStringTest() {
         assertEquals(group + ", year: " + year, g1.toString());
         assertEquals(g2.toString(), g1.toString());
         assertEquals(g1.toString(), g1.toString());
     }
 
     @Test
-    void testHashCode() {
+    void hashCodeTest() {
         assertEquals(g1.hashCode(), g2.hashCode());
         assertEquals(g1.hashCode(), g1.hashCode());
     }
 
     @Test
-    void testEquals() {
+    void equalsTest() {
         HashCodeTestClass O = new HashCodeTestClass();
         O.hashcode = g2.hashCode();
         assertFalse(g2.equals(O));
