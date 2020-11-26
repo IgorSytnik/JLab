@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,7 +30,7 @@ class InstitutionTest {
     };
 
     @Test
-    void enterNameTest() throws IOException {
+    void enterName_GotTheProperString_Equals() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                 "My string.\n" +
@@ -46,30 +45,5 @@ class InstitutionTest {
 
         assertEquals(name, obj.enterName());
         System.setIn(sysInBackup);
-    }
-
-    @Test
-    void getListTest() {
-        String name = "My string";
-        List<HigherEducationalInstitution> list = new ArrayList();
-        assertFalse(obj.getList(list, "fff"));
-
-        HigherEducationalInstitution hei = new HigherEducationalInstitution(name);
-        list.add(hei);
-        assertTrue(obj.getList(list, "fff"));
-
-    }
-
-    @Test
-    void getOneTest() {
-        String name = "My string";
-        List<HigherEducationalInstitution> list = new ArrayList();
-        assertNull(obj.getOne(list, name, 1));
-
-        HigherEducationalInstitution hei = new HigherEducationalInstitution(name);
-        list.add(hei);
-        assertNull(obj.getOne(list, name, 3));
-        assertNotNull(obj.getOne(list, name, 0));
-
     }
 }

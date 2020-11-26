@@ -17,35 +17,11 @@ class TeacherTest {
     Teacher t3 = new Teacher("Bigu", AcademicPosition.DOCTORAL_STUDENT);
 
     @Test
-    void initTest() throws IOException {
-        String name = "1";
-        int num = 1;
-        String expected =
-                "-2\n" +
-                "n\n" +
-                "0\n" +
-                "n\n" +
-                "FMA\n" +
-                "2\n" +
-                "n\n" +
-                num + "\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        InputStream in = new ByteArrayInputStream(expected.getBytes());
-        in.mark(0);
-        System.setIn(in);
-
-        Teacher obj = new Teacher();
-
-        assertEquals(name + ", position: " + AcademicPosition.values()[num-1], obj.toString());
-        System.setIn(sysInBackup);
-    }
-
-    @Test
     void toStringTest() {
         assertEquals(name + ", position: " + position, t1.toString());
         assertEquals(t2.toString(), t1.toString());
         assertEquals(t1.toString(), t1.toString());
+        assertNotEquals(t1.toString(), t3.toString());
     }
 
     @Test

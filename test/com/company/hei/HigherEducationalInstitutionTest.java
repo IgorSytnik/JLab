@@ -1,18 +1,29 @@
 package com.company.hei;
 
 import com.company.HashCodeTestClass;
-import com.company.people.Group;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class HigherEducationalInstitutionTest {
+
+    // for keyboard input
+    String name = "My string";
+    String expected = "My@@ string\n" +
+            "My string.\n" +
+            "My string\n" +
+            "My string\n" +
+            "n\n" +
+            "My string\n" +
+            "y\n";
+    InputStream sysInBackup = System.in; // backup System.in to restore it later
+    ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+
+    // helping objects
     String n = "XX-00";
     HigherEducationalInstitution g1 = new HigherEducationalInstitution(n);
     HigherEducationalInstitution g2 = new HigherEducationalInstitution(n);
@@ -20,16 +31,6 @@ class HigherEducationalInstitutionTest {
 
     @Test
     void constructor_CompareNameAndString_Equals() throws IOException {
-        String name = "My string";
-        String expected = "My@@ string\n" +
-                "My string.\n" +
-                "My string\n" +
-                "My string\n" +
-                "n\n" +
-                "My string\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
 
         HigherEducationalInstitution hei = new HigherEducationalInstitution();
@@ -40,15 +41,6 @@ class HigherEducationalInstitutionTest {
 
     @Test
     void addFaculty_AddOne_True() throws IOException {
-        String expected = "My@@ string\n" +
-                "My string.\n" +
-                "My string\n" +
-                "My string\n" +
-                "n\n" +
-                "My string\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
 
         assertTrue(obj.addFaculty());
@@ -58,15 +50,6 @@ class HigherEducationalInstitutionTest {
 
     @Test
     void addFaculty_AddTwoEqualOnes_False() throws IOException {
-        String expected = "My@@ string\n" +
-                "My string.\n" +
-                "My string\n" +
-                "My string\n" +
-                "n\n" +
-                "My string\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
 
         obj.addFaculty();
@@ -76,21 +59,12 @@ class HigherEducationalInstitutionTest {
     }
 
     @Test
-    void addFaculty_EmptyList_Null() {
+    void getFaculty_EmptyList_Null() {
         assertNull(obj.getFaculty(0));
     }
 
     @Test
-    void addFaculty_WrongNumber_Null() throws IOException {
-        String expected = "My@@ string\n" +
-                "My string.\n" +
-                "My string\n" +
-                "My string\n" +
-                "n\n" +
-                "My string\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+    void getFaculty_WrongNumber_Null() throws IOException {
         System.setIn(in);
 
         obj.addFaculty();
@@ -101,16 +75,7 @@ class HigherEducationalInstitutionTest {
     }
 
     @Test
-    void addFaculty_GetDepartmentFromList_NotNull() throws IOException {
-        String expected = "My@@ string\n" +
-                "My string.\n" +
-                "My string\n" +
-                "My string\n" +
-                "n\n" +
-                "My string\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+    void getFaculty_GetFacultyFromList_NotNull() throws IOException {
         System.setIn(in);
 
         obj.addFaculty();
@@ -120,29 +85,6 @@ class HigherEducationalInstitutionTest {
         assertNotNull(obj.getFaculty(0));
     }
 
-//    @Test
-//    void addDepartmentAndGetDepartmentTest() throws IOException {
-//        obj.addDepartment();
-//        String name = "1";
-//        String expected = "1\n" +
-//                        "y\n";
-//        InputStream sysInBackup = System.in; // backup System.in to restore it later
-//        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
-//        System.setIn(in);
-//
-//        obj.addFaculty();
-//        assertEquals(name, obj.getFaculty(0).getName());
-//
-//        System.setIn(sysInBackup);
-//
-//        System.setIn(in);
-//
-//        obj.addDepartment();
-//        assertEquals(name, obj.getFaculty(0).getDepartment(0).getName());
-//
-//        System.setIn(sysInBackup);
-//    }
-
     @Test
     void getFacList_GetEmptyList_False() {
         assertFalse(obj.getFacList());
@@ -150,15 +92,6 @@ class HigherEducationalInstitutionTest {
 
     @Test
     void getFacList_GetNotEmptyList_True() throws IOException {
-        String expected = "My@@ string\n" +
-                "My string.\n" +
-                "My string\n" +
-                "My string\n" +
-                "n\n" +
-                "My string\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
 
         obj.addFaculty();

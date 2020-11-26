@@ -6,111 +6,118 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class GroupTest {
+
+    int num = 1;
+    String expected =
+            "-2\n" +
+                    "n\n" +
+                    "0\n" +
+                    "n\n" +
+                    "FMA\n" +
+                    "2\n" +
+                    "n\n" +
+                    num + "\n" +
+                    "y\n";
+    InputStream sysInBackup = System.in; // backup System.in to restore it later
+    ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+
+
     String group = "XX-00";
     int year = 3;
     Group g1 = new Group(group, year);
     Group g2 = new Group(group, year);
-    Group g3 = new Group("HH-11", year);
+    Group obj = new Group("HH-11", year);
 
 
     @Test
-    void initTest() throws IOException {
-        String name = "XX-11";
-        int num = 1;
-        String expected =
+    void constructor_CompareNameAndString_Equals() throws IOException {
+        String name1 = "XX-11";
+        int num1 = 1;
+        String expected1 =
                 "p34-123\n" +
                         "12-yu\n" +
                         "XX-00\n" +
                         "n\n" +
-                        name + "\n" +
+                        name1 + "\n" +
                         "y\n" +
                         "2\n" +
                         "n\n" +
-                        num + "\n" +
+                        num1 + "\n" +
                         "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
-        System.setIn(in);
+        ByteArrayInputStream in1 = new ByteArrayInputStream(expected1.getBytes());
+        System.setIn(in1);
 
-        Group obj = new Group();
+        Group obj1 = new Group();
 
-        assertEquals(name + ", year: " + num, obj.toString());
+        assertEquals(name1 + ", year: " + num1, obj1.toString());
         System.setIn(sysInBackup);
     }
 
-    @Test
-    void addStudentTest() throws IOException {
-        int num = 1;
-        String expected =
-                "-2\n" +
-                        "n\n" +
-                        "0\n" +
-                        "n\n" +
-                        "FMA\n" +
-                        "2\n" +
-                        "n\n" +
-                        num + "\n" +
-                        "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
-        System.setIn(in);
-
-        assertTrue(g3.addStudent());
-        assertFalse(g3.addStudent());
-
-        assertEquals(num + ", group: " + "HH-11" + ", year: " + year, g3.getStudent(0).toString());
-        System.setIn(sysInBackup);
-    }
 
     @Test
-    void getStudentsListTest() throws IOException {
-        assertFalse(g3.getStudentsList());
-
-        String name = "My string";
-        String expected = "My@@ string\n" +
-                "My string.\n" +
-                "My string\n" +
-                "My string\n" +
-                "n\n" +
-                "My string\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+    void addStudent_AddOne_True() throws IOException {
         System.setIn(in);
 
-        g3.addStudent();
-        assertTrue(g3.getStudentsList());
+        assertTrue(obj.addStudent());
 
         System.setIn(sysInBackup);
     }
 
     @Test
-    void getStudentTest() throws IOException {
-        assertNull(g3.getStudent(3));
-
-        String name = "My string";
-        String expected = "My@@ string\n" +
-                "My string.\n" +
-                "My string\n" +
-                "My string\n" +
-                "n\n" +
-                "My string\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+    void addStudent_AddTwoEqualOnes_False() throws IOException {
         System.setIn(in);
 
-        g3.addStudent();
-        assertNull(g3.getStudent(3));
-        assertNotNull(g3.getStudent(0));
+        obj.addStudent();
+        assertFalse(obj.addStudent());
 
         System.setIn(sysInBackup);
+    }
+
+    @Test
+    void getStudent_EmptyList_Null() {
+        assertNull(obj.getStudent(0));
+    }
+
+    @Test
+    void getStudent_WrongNumber_Null() throws IOException {
+        System.setIn(in);
+
+        obj.addStudent();
+
+        System.setIn(sysInBackup);
+
+        assertNull(obj.getStudent(4));
+    }
+
+    @Test
+    void getStudent_GetDepartmentFromList_NotNull() throws IOException {
+        System.setIn(in);
+
+        obj.addStudent();
+
+        System.setIn(sysInBackup);
+
+        assertNotNull(obj.getStudent(0));
+    }
+
+    @Test
+    void getStudentsList_GetEmptyList_False() {
+        assertFalse(obj.getStudentsList());
+    }
+
+    @Test
+    void getStudentsList_GetNotEmptyList_True() throws IOException {
+        System.setIn(in);
+
+        obj.addStudent();
+
+        System.setIn(sysInBackup);
+
+        assertTrue(obj.getStudentsList());
     }
 
     @Test
@@ -126,17 +133,26 @@ class GroupTest {
     }
 
     @Test
-    void hashCodeTest() {
+    void hashCode_CompareEqualGroupHashCodes_Equals() {
         assertEquals(g1.hashCode(), g2.hashCode());
         assertEquals(g1.hashCode(), g1.hashCode());
     }
 
     @Test
-    void equalsTest() {
+    void hashCode_CompareNotEqualGroupHashCodes_NotEquals() {
+        assertNotEquals(obj.hashCode(), g1.hashCode());
+    }
+
+    @Test
+    void equals_CompareNotEqualGroups_NotEquals() {
         HashCodeTestClass O = new HashCodeTestClass();
         O.hashcode = g2.hashCode();
         assertFalse(g2.equals(O));
+        assertNotEquals(obj, g1);
+    }
+
+    @Test
+    void equals_CompareEqualGroups_Equals() {
         assertEquals(g1, g2);
-        assertNotEquals(g3, g1);
     }
 }
