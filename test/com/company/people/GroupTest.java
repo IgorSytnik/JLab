@@ -121,15 +121,20 @@ class GroupTest {
     }
 
     @Test
-    void getYearTest() {
+    void getYear_CompareYearAndVar_Equals() {
         assertEquals(year, g1.getYear());
     }
 
     @Test
-    void toStringTest() {
+    void toString_CompareEqualNames_Equals() {
         assertEquals(group + ", year: " + year, g1.toString());
         assertEquals(g2.toString(), g1.toString());
         assertEquals(g1.toString(), g1.toString());
+    }
+
+    @Test
+    void toString_CompareNonEqualNames_NotEquals() {
+        assertNotEquals(obj.toString(), g1.toString());
     }
 
     @Test

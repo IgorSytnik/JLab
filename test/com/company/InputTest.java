@@ -6,21 +6,40 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.io.ByteArrayInputStream;
+import static org.junit.jupiter.api.Assertions.*;
 
 class InputTest {
+    String name = "bruh ee ee";
+    String expected = "123\ny\nn\nbruh ee ee\ny";
+    InputStream sysInBackup = System.in; // backup System.in to restore it later
+    InputStream in = new ByteArrayInputStream(expected.getBytes());
 
     @Test
-    void inputStringTest() throws IOException {
-        String expected = "sdfsfsdf\ny";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        InputStream in = new ByteArrayInputStream(expected.getBytes());
+    void inputString_Numbers_Equals() throws IOException {
         System.setIn(in);
 
-        Input.inputString("Please enter full name:", "[a-zA-Z_0-9\\s]+");
-
-        Input.inputString("Please enter full name:", "[a-zA-Z_0-9\\s]+");
+        assertEquals("123", Input.inputString("STR", "[0-9\\s]+"));
 
         System.setIn(sysInBackup);
     }
+
+    @Test
+    void inputString_word_Equals() throws IOException {
+        System.setIn(in);
+
+        assertEquals(name, Input.inputString("STR", "[a-z\\s]+"));
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    void inputInt_word_Equals() throws IOException {
+        System.setIn(in);
+
+        assertEquals(123, Input.inputInt("NUM", 2, 200));
+
+        System.setIn(sysInBackup);
+    }
+
 
 }
