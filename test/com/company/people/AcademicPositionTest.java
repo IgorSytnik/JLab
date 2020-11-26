@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AcademicPositionTest {
 
     @Test
-    void listTest() {
+    void list_Works_Equals() {
         assertNotNull(AcademicPosition.list());
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < AcademicPosition.values().length; i++) {
@@ -17,6 +17,5 @@ class AcademicPositionTest {
             str.append('\n');
         }
         assertEquals(str.toString(), AcademicPosition.list());
-
     }
 }

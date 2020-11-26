@@ -31,18 +31,18 @@ public class HigherEducationalInstitution extends Institution {
         }
     }
 
-    public void addDepartment() throws IOException {
-        if(getFacList()) {
-            System.out.println("\nWhere do you want to put new department? (pick the faculty)");
-            int num = Input.inputInt("Please enter the number from the list (-1 to cancel):",
-                    1,
-                    faculties.size()) - 1;
-            if(num == -1) return;
-            faculties.get(num).addDepartment();
-        } else {
-            System.out.println("\nFirst, you need to add faculties.");
-        }
-    }
+//    public void addDepartment() throws IOException {
+//        if(getFacList()) {
+//            System.out.println("\nWhere do you want to put new department? (pick the faculty)");
+//            int num = Input.inputInt("Please enter the number from the list (-1 to cancel):",
+//                    1,
+//                    faculties.size()) - 1;
+//            if(num == -1) return;
+//            faculties.get(num).addDepartment();
+//        } else {
+//            System.out.println("\nFirst, you need to add faculties.");
+//        }
+//    }
 
     public boolean getFacList() {
         return getList(faculties, "faculties");
@@ -51,14 +51,7 @@ public class HigherEducationalInstitution extends Institution {
     public Faculty getFaculty(int i) {
         //TODO 5 ("Object") do stuff
         Object obj = getOne(faculties, "faculties", i);
-//        try {
-//            if (!(obj instanceof Faculty)) throw new RuntimeException("Wrong object type!");
-            return (Faculty) obj;
-//        } catch (RuntimeException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        return null;
-//        return (Faculty) obj;
+        return (Faculty) obj;
     }
 
     @Override

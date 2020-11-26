@@ -20,7 +20,7 @@ public class Faculty extends Institution {
     }
 
     public boolean addDepartment() throws IOException {
-        Department department = new Department();
+        Department department = new     Department();
         if(lookUp(department.getName())) {
             System.out.println("This faculty already has this department ");
             return false;
@@ -30,7 +30,7 @@ public class Faculty extends Institution {
         }
     }
 
-    public boolean getDepartmentsList() {
+    public boolean getDepartmentList() {
         return getList(departments, "departments");
     }
     public Department getDepartment(int i) {

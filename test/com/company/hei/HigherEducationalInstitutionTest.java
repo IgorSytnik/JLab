@@ -19,7 +19,7 @@ class HigherEducationalInstitutionTest {
     HigherEducationalInstitution obj = new HigherEducationalInstitution("Tim Shaq");
 
     @Test
-    void testInit() throws IOException {
+    void constructor_CompareNameAndString_Equals() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                 "My string.\n" +
@@ -39,52 +39,7 @@ class HigherEducationalInstitutionTest {
     }
 
     @Test
-    void addFacultyAndGetFacultyTest() throws IOException {
-        String name = "My string";
-        String expected = "My@@ string\n" +
-                "My string.\n" +
-                "My string\n" +
-                "My string\n" +
-                "n\n" +
-                "My string\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
-        System.setIn(in);
-
-        obj.addFaculty();
-        assertEquals(name, obj.getFaculty(0).getName());
-
-        System.setIn(sysInBackup);
-    }
-
-    @Test
-    void addDepartmentAndGetDepartmentTest() throws IOException {
-        obj.addDepartment();
-        String name = "1";
-        String expected = "1\n" +
-                        "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
-        System.setIn(in);
-
-        obj.addFaculty();
-        assertEquals(name, obj.getFaculty(0).getName());
-
-        System.setIn(sysInBackup);
-
-        System.setIn(in);
-
-        obj.addDepartment();
-        assertEquals(name, obj.getFaculty(0).getDepartment(0).getName());
-
-        System.setIn(sysInBackup);
-    }
-
-    @Test
-    void getFacListTest() throws IOException {
-        assertFalse(obj.getFacList());
-        String name = "My string";
+    void addFaculty_AddOne_True() throws IOException {
         String expected = "My@@ string\n" +
                 "My string.\n" +
                 "My string\n" +
@@ -97,7 +52,116 @@ class HigherEducationalInstitutionTest {
         System.setIn(in);
 
         assertTrue(obj.addFaculty());
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    void addFaculty_AddTwoEqualOnes_False() throws IOException {
+        String expected = "My@@ string\n" +
+                "My string.\n" +
+                "My string\n" +
+                "My string\n" +
+                "n\n" +
+                "My string\n" +
+                "y\n";
+        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+
+        obj.addFaculty();
         assertFalse(obj.addFaculty());
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    void addFaculty_EmptyList_Null() {
+        assertNull(obj.getFaculty(0));
+    }
+
+    @Test
+    void addFaculty_WrongNumber_Null() throws IOException {
+        String expected = "My@@ string\n" +
+                "My string.\n" +
+                "My string\n" +
+                "My string\n" +
+                "n\n" +
+                "My string\n" +
+                "y\n";
+        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+
+        obj.addFaculty();
+
+        System.setIn(sysInBackup);
+
+        assertNull(obj.getFaculty(4));
+    }
+
+    @Test
+    void addFaculty_GetDepartmentFromList_NotNull() throws IOException {
+        String expected = "My@@ string\n" +
+                "My string.\n" +
+                "My string\n" +
+                "My string\n" +
+                "n\n" +
+                "My string\n" +
+                "y\n";
+        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+
+        obj.addFaculty();
+
+        System.setIn(sysInBackup);
+
+        assertNotNull(obj.getFaculty(0));
+    }
+
+//    @Test
+//    void addDepartmentAndGetDepartmentTest() throws IOException {
+//        obj.addDepartment();
+//        String name = "1";
+//        String expected = "1\n" +
+//                        "y\n";
+//        InputStream sysInBackup = System.in; // backup System.in to restore it later
+//        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+//        System.setIn(in);
+//
+//        obj.addFaculty();
+//        assertEquals(name, obj.getFaculty(0).getName());
+//
+//        System.setIn(sysInBackup);
+//
+//        System.setIn(in);
+//
+//        obj.addDepartment();
+//        assertEquals(name, obj.getFaculty(0).getDepartment(0).getName());
+//
+//        System.setIn(sysInBackup);
+//    }
+
+    @Test
+    void getFacList_GetEmptyList_False() {
+        assertFalse(obj.getFacList());
+    }
+
+    @Test
+    void getFacList_GetNotEmptyList_True() throws IOException {
+        String expected = "My@@ string\n" +
+                "My string.\n" +
+                "My string\n" +
+                "My string\n" +
+                "n\n" +
+                "My string\n" +
+                "y\n";
+        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+
+        obj.addFaculty();
 
         System.setIn(sysInBackup);
 
@@ -105,17 +169,26 @@ class HigherEducationalInstitutionTest {
     }
 
     @Test
-    void hashCodeTest() {
+    void hashCode_CompareEqualHEIHashCodes_Equals() {
         assertEquals(g1.hashCode(), g2.hashCode());
         assertEquals(g1.hashCode(), g1.hashCode());
     }
 
     @Test
-    void equalsTest() {
+    void hashCode_CompareNotEqualHEIHashCodes_NotEquals() {
+        assertNotEquals(obj.hashCode(), g1.hashCode());
+    }
+
+    @Test
+    void equals_CompareNotEqualHEIs_NotEquals() {
         HashCodeTestClass O = new HashCodeTestClass();
         O.hashcode = g2.hashCode();
         assertFalse(g2.equals(O));
-        assertEquals(g1, g2);
         assertNotEquals(obj, g1);
+    }
+
+    @Test
+    void equals_CompareEqualHEIs_Equals() {
+        assertEquals(g1, g2);
     }
 }

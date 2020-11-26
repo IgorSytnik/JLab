@@ -33,7 +33,7 @@ class ClassWithNameTest {
     };
 
     @Test
-    void enterNameTest() throws IOException {
+    void enterName_GotTheProperString_Equals() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                         "My string.\n" +
@@ -51,7 +51,7 @@ class ClassWithNameTest {
     }
 
     @Test
-    void enterNameWithParametersTest() throws IOException {
+    void enterName_WithParametersGotTheProperString_Equals() throws IOException {
         String name = "My string";
         String expected = "My@@ string\n" +
                 "My string.\n" +
@@ -69,14 +69,21 @@ class ClassWithNameTest {
     }
 
     @Test
-    void setNameTest() {
+    void setName_EqualsToTheStringThatItReadFrom_Equals() {
         String expected = "Bruh";
         obj.setName(expected);
         assertEquals(expected, obj.getName());
     }
 
     @Test
-    void getNameTest() {
+    void setName_NotEqualsToTheWrongString_NotEquals() {
+        String expected = "Bruh";
+        obj.setName(expected);
+        assertNotEquals("expected", obj.getName());
+    }
+
+    @Test
+    void getName_EqualsToTheStringThatItReadFrom_Equals() {
         String expected = "Bruh";
         obj.setName(expected);
         assertEquals(expected, obj.getName());

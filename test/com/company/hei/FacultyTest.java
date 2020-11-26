@@ -16,9 +16,32 @@ class FacultyTest {
     Faculty obj = new Faculty("Shaq");
 
     @Test
-    void getDepartmentsListAddDepartmentTest() throws IOException {
-        assertFalse(obj.getDepartmentsList());
-        String name = "My string";
+    void getDepartmentList_GetEmptyList_False() {
+        assertFalse(obj.getDepartmentList());
+    }
+
+    @Test
+    void getDepartmentList_GetNotEmptyList_True() throws IOException {
+        String expected = "My@@ string\n" +
+                "My string.\n" +
+                "My string\n" +
+                "My string\n" +
+                "n\n" +
+                "My string\n" +
+                "y\n";
+        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+
+        obj.addDepartment();
+
+        System.setIn(sysInBackup);
+
+        assertTrue(obj.getDepartmentList());
+    }
+
+    @Test
+    void addDepartment_AddOne_True() throws IOException {
         String expected = "My@@ string\n" +
                 "My string.\n" +
                 "My string\n" +
@@ -31,25 +54,95 @@ class FacultyTest {
         System.setIn(in);
 
         assertTrue(obj.addDepartment());
-        assertFalse(obj.addDepartment());
 
         System.setIn(sysInBackup);
-
-        assertTrue(obj.getDepartmentsList());
     }
 
     @Test
-    void hashCodeTest() {
+    void addDepartment_AddTwoEqualOnes_False() throws IOException {
+        String expected = "My@@ string\n" +
+                "My string.\n" +
+                "My string\n" +
+                "My string\n" +
+                "n\n" +
+                "My string\n" +
+                "y\n";
+        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+
+        obj.addDepartment();
+        assertFalse(obj.addDepartment());
+
+        System.setIn(sysInBackup);
+    }
+
+    @Test
+    void getDepartment_EmptyList_Null(){
+        assertNull(obj.getDepartment(0));
+    }
+
+    @Test
+    void getDepartment_WrongNumber_Null() throws IOException {
+        String expected = "My@@ string\n" +
+                "My string.\n" +
+                "My string\n" +
+                "My string\n" +
+                "n\n" +
+                "My string\n" +
+                "y\n";
+        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+
+        obj.addDepartment();
+
+        System.setIn(sysInBackup);
+
+        assertNull(obj.getDepartment(4));
+    }
+
+    @Test
+    void getDepartment_GetDepartmentFromList_NotNull() throws IOException {
+        String expected = "My@@ string\n" +
+                "My string.\n" +
+                "My string\n" +
+                "My string\n" +
+                "n\n" +
+                "My string\n" +
+                "y\n";
+        InputStream sysInBackup = System.in; // backup System.in to restore it later
+        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+
+        obj.addDepartment();
+
+        System.setIn(sysInBackup);
+
+        assertNotNull(obj.getDepartment(0));
+    }
+
+    @Test
+    void hashCode_CompareEqualFacultiesHashCodes_Equals() {
         assertEquals(s1.hashCode(), s2.hashCode());
         assertEquals(s1.hashCode(), s1.hashCode());
     }
 
     @Test
-    void equalsTest() {
+    void hashCode_CompareNotEqualFacultiesHashCodes_NotEquals() {
+        assertNotEquals(obj.hashCode(), s1.hashCode());
+    }
+
+    @Test
+    void equals_CompareNotEqualFaculties_NotEquals() {
         HashCodeTestClass O = new HashCodeTestClass();
         O.hashcode = s2.hashCode();
         assertFalse(s2.equals(O));
-        assertEquals(s1, s2);
         assertNotEquals(obj, s1);
+    }
+
+    @Test
+    void equals_CompareEqualFaculties_Equals() {
+        assertEquals(s1, s2);
     }
 }
