@@ -24,7 +24,7 @@ class InputTest {
     }
 
     @Test
-    void inputString_word_Equals() throws IOException {
+    void inputString_Word_Equals() throws IOException {
         System.setIn(in);
 
         assertEquals(name, Input.inputString("STR", "[a-z\\s]+"));
@@ -33,7 +33,7 @@ class InputTest {
     }
 
     @Test
-    void inputInt_word_Equals() throws IOException {
+    void inputInt_Numbers_Equals() throws IOException {
         System.setIn(in);
 
         assertEquals(123, Input.inputInt("NUM", 2, 200));
