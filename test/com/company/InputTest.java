@@ -40,9 +40,4 @@ class InputTest {
 
         System.setIn(sysInBackup);
     }
-
-    void tea() {
-    }
-
-
 }
