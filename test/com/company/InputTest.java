@@ -42,4 +42,5 @@ class InputTest {
     }
     1
 
+    2
 }
