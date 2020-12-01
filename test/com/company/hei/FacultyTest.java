@@ -90,27 +90,27 @@ class FacultyTest {
         assertNotNull(obj.getDepartment(0));
     }
 
-    @Test
-    void hashCode_CompareEqualFacultiesHashCodes_Equals() {
-        assertEquals(s1.hashCode(), s2.hashCode());
-        assertEquals(s1.hashCode(), s1.hashCode());
-    }
-
-    @Test
-    void hashCode_CompareNotEqualFacultiesHashCodes_NotEquals() {
-        assertNotEquals(obj.hashCode(), s1.hashCode());
-    }
-
-    @Test
-    void equals_CompareNotEqualFaculties_NotEquals() {
-        HashCodeTestClass O = new HashCodeTestClass();
-        O.hashcode = s2.hashCode();
-        assertFalse(s2.equals(O));
-        assertNotEquals(obj, s1);
-    }
-
-    @Test
-    void equals_CompareEqualFaculties_Equals() {
-        assertEquals(s1, s2);
-    }
+//    @Test
+//    void hashCode_CompareEqualFacultiesHashCodes_Equals() {
+//        assertEquals(s1.hashCode(), s2.hashCode());
+//        assertEquals(s1.hashCode(), s1.hashCode());
+//    }
+//
+//    @Test
+//    void hashCode_CompareNotEqualFacultiesHashCodes_NotEquals() {
+//        assertNotEquals(obj.hashCode(), s1.hashCode());
+//    }
+//
+//    @Test
+//    void equals_CompareNotEqualFaculties_NotEquals() {
+//        HashCodeTestClass O = new HashCodeTestClass();
+//        O.hashcode = s2.hashCode();
+//        assertFalse(s2.equals(O));
+//        assertNotEquals(obj, s1);
+//    }
+//
+//    @Test
+//    void equals_CompareEqualFaculties_Equals() {
+//        assertEquals(s1, s2);
+//    }
 }

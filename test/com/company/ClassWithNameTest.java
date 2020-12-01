@@ -50,42 +50,42 @@ class ClassWithNameTest {
         System.setIn(sysInBackup);
     }
 
-    @Test
-    void enterName_WithParametersGotTheProperString_Equals() throws IOException {
-        String name = "My string";
-        String expected = "My@@ string\n" +
-                "My string.\n" +
-                "My string\n" +
-                "My string\n" +
-                "n\n" +
-                "My string\n" +
-                "y\n";
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
-        System.setIn(in);
-
-        assertEquals(name, obj.enterName("what", "[a-zA-Z_0-9\\s]+"));
-        System.setIn(sysInBackup);
-    }
-
-    @Test
-    void setName_EqualsToTheStringThatItReadFrom_Equals() {
-        String expected = "Bruh";
-        obj.setName(expected);
-        assertEquals(expected, obj.getName());
-    }
-
-    @Test
-    void setName_NotEqualsToTheWrongString_NotEquals() {
-        String expected = "Bruh";
-        obj.setName(expected);
-        assertNotEquals("expected", obj.getName());
-    }
-
-    @Test
-    void getName_EqualsToTheStringThatItReadFrom_Equals() {
-        String expected = "Bruh";
-        obj.setName(expected);
-        assertEquals(expected, obj.getName());
-    }
+//    @Test
+//    void enterName_WithParametersGotTheProperString_Equals() throws IOException {
+//        String name = "My string";
+//        String expected = "My@@ string\n" +
+//                "My string.\n" +
+//                "My string\n" +
+//                "My string\n" +
+//                "n\n" +
+//                "My string\n" +
+//                "y\n";
+//        InputStream sysInBackup = System.in; // backup System.in to restore it later
+//        ByteArrayInputStream in = new ByteArrayInputStream(expected.getBytes());
+//        System.setIn(in);
+//
+//        assertEquals(name, obj.enterName("what", "[a-zA-Z_0-9\\s]+"));
+//        System.setIn(sysInBackup);
+//    }
+//
+//    @Test
+//    void setName_EqualsToTheStringThatItReadFrom_Equals() {
+//        String expected = "Bruh";
+//        obj.setName(expected);
+//        assertEquals(expected, obj.getName());
+//    }
+//
+//    @Test
+//    void setName_NotEqualsToTheWrongString_NotEquals() {
+//        String expected = "Bruh";
+//        obj.setName(expected);
+//        assertNotEquals("expected", obj.getName());
+//    }
+//
+//    @Test
+//    void getName_EqualsToTheStringThatItReadFrom_Equals() {
+//        String expected = "Bruh";
+//        obj.setName(expected);
+//        assertEquals(expected, obj.getName());
+//    }
 }

@@ -101,27 +101,27 @@ class HigherEducationalInstitutionTest {
         assertTrue(obj.getFacList());
     }
 
-    @Test
-    void hashCode_CompareEqualHEIHashCodes_Equals() {
-        assertEquals(g1.hashCode(), g2.hashCode());
-        assertEquals(g1.hashCode(), g1.hashCode());
-    }
-
-    @Test
-    void hashCode_CompareNotEqualHEIHashCodes_NotEquals() {
-        assertNotEquals(obj.hashCode(), g1.hashCode());
-    }
-
-    @Test
-    void equals_CompareNotEqualHEIs_NotEquals() {
-        HashCodeTestClass O = new HashCodeTestClass();
-        O.hashcode = g2.hashCode();
-        assertFalse(g2.equals(O));
-        assertNotEquals(obj, g1);
-    }
-
-    @Test
-    void equals_CompareEqualHEIs_Equals() {
-        assertEquals(g1, g2);
-    }
+//    @Test
+//    void hashCode_CompareEqualHEIHashCodes_Equals() {
+//        assertEquals(g1.hashCode(), g2.hashCode());
+//        assertEquals(g1.hashCode(), g1.hashCode());
+//    }
+//
+//    @Test
+//    void hashCode_CompareNotEqualHEIHashCodes_NotEquals() {
+//        assertNotEquals(obj.hashCode(), g1.hashCode());
+//    }
+//
+//    @Test
+//    void equals_CompareNotEqualHEIs_NotEquals() {
+//        HashCodeTestClass O = new HashCodeTestClass();
+//        O.hashcode = g2.hashCode();
+//        assertFalse(g2.equals(O));
+//        assertNotEquals(obj, g1);
+//    }
+//
+//    @Test
+//    void equals_CompareEqualHEIs_Equals() {
+//        assertEquals(g1, g2);
+//    }
 }

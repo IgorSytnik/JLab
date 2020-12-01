@@ -40,7 +40,4 @@ class InputTest {
 
         System.setIn(sysInBackup);
     }
-    1
-
-    2
 }
