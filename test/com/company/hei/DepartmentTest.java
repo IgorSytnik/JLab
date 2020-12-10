@@ -1,6 +1,5 @@
 package com.company.hei;
 
-import com.company.HashCodeTestClass;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;

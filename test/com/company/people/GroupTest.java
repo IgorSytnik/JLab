@@ -1,6 +1,5 @@
 package com.company.people;
 
-import com.company.HashCodeTestClass;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;

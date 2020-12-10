@@ -1,10 +1,5 @@
 package com.company.people;
 
-import com.company.HashCodeTestClass;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class StudentTest {
     String name = "Tim Shaq";
     String group = "XX-00";
