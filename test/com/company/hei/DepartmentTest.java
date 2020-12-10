@@ -1,5 +1,9 @@
 package com.company.hei;
 
+import com.company.people.AcademicPosition;
+import com.company.people.Group;
+import com.company.people.Teacher;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -10,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DepartmentTest {
 
-    // for keyboard input
+/* for keyboard input */
     String name1 = "XX-11";
     int num1 = 1;
     String expected1 =
@@ -39,11 +43,50 @@ class DepartmentTest {
     ByteArrayInputStream in1 = new ByteArrayInputStream(expected1.getBytes());
     ByteArrayInputStream in2 = new ByteArrayInputStream(expected2.getBytes());
 
-    // helping objects
-    String name = "Tim Shaq";
-    Department s1 = new Department(name);
-    Department s2 = new Department(name);
+    /* helping objects */
+
     Department obj = new Department("Bigu");
+
+    static Department Lambda1 = new Department("Lambda Lab");
+    static Department Lambda2 = new Department("Lambda Lab");
+    static Group gTest3 = new Group("TH-91", 4);
+
+    @BeforeAll
+    static void before() {
+        Group gTest1 = new Group("TH-81", 3);
+        Group gTest2 = new Group("TH-82", 3);
+
+        gTest1.addStudent("Talking Head");
+        gTest1.addStudent("Oingo Boingo");
+
+        gTest2.addStudent("Death Grip");
+
+        gTest3.addStudent("Limp Bizkit");
+        gTest3.addStudent("Scary Monster");
+        gTest3.addStudent("Super Creep");
+        gTest3.addStudent("Queen Bee");
+
+        Lambda1.addGroup(gTest1); // 2
+        Lambda1.addGroup(gTest2); // 1
+        Lambda1.addGroup(new Group("TH-83", 3));
+
+        Lambda1.addGroup(gTest3); // 4
+        Lambda1.addGroup(new Group("TH-92", 4));
+        Lambda1.addGroup(new Group("TH-93", 4));
+        Lambda1.addGroup(new Group("TH-94", 4));
+
+        Lambda1.addTeacher(new Teacher("Pilot Red Sun", AcademicPosition.ASPIRANT)); // 4
+        Lambda1.addTeacher(new Teacher("Men At Work", AcademicPosition.ASPIRANT));
+        Lambda1.addTeacher(new Teacher("Haircuts For Men", AcademicPosition.ASPIRANT));
+        Lambda1.addTeacher(new Teacher("Black Sabbath", AcademicPosition.ASPIRANT));
+
+        Lambda1.addTeacher(new Teacher("Gaelic Storm", AcademicPosition.DOCTORAL_STUDENT)); // 3
+        Lambda1.addTeacher(new Teacher("Tears For Fears", AcademicPosition.DOCTORAL_STUDENT));
+        Lambda1.addTeacher(new Teacher("Slipknot", AcademicPosition.DOCTORAL_STUDENT));
+
+        Lambda1.addTeacher(new Teacher("City Blues", AcademicPosition.PROFESSOR)); // 2
+        Lambda1.addTeacher(new Teacher("Slick Rick", AcademicPosition.PROFESSOR));
+    }
 
     @Test
     void addGroup_AddAGroup_True() throws IOException {
@@ -168,6 +211,119 @@ class DepartmentTest {
 
         assertTrue(obj.getTeachersList());
     }
+
+    /* lambdas */
+
+    /*findGroupsByYear*/
+    @Test
+    void findGroupsByYear_FindByTwoDifferentYears_Equals() {
+        assertEquals(4, Lambda1.findGroupsByYear(4).size());
+        assertEquals(3, Lambda1.findGroupsByYear(3).size());
+    }
+
+    @Test
+    void findGroupsByYear_FindNonExistingGroups_Equals() {
+        assertEquals(0, Lambda1.findGroupsByYear(1).size());
+    }
+
+    @Test
+    void findGroupsByYear_SearchesInTheEmptyList_Equals() {
+        assertEquals(0, Lambda2.findGroupsByYear(4).size());
+    }
+
+    /*countStudentsByYear*/
+
+    @Test
+    void countStudentsByYear_CountByTwoDifferentYears_Equals() {
+        assertEquals(4, Lambda1.countStudentsByYear(4));
+        assertEquals(3, Lambda1.countStudentsByYear(3));
+    }
+
+    @Test
+    void countStudentsByYear_CountByNonExistingGroups_Equals() {
+        assertEquals(0, Lambda1.countStudentsByYear(1));
+    }
+
+    @Test
+    void countStudentsByYear_CountInAnEmptyList_Equals(){
+        assertEquals(0, Lambda2.countStudentsByYear(4));
+    }
+
+    /*maxStudentsInGroup*/
+
+    @Test
+    void maxStudentsInGroup_FindMaxInAListWithGroups_Equals() {
+        assertEquals(gTest3, Lambda1.maxStudentsInGroup());
+    }
+
+    /*avgNumberOfStudents*/
+
+    @Test
+    void avgNumberOfStudents_FindAvgInAListWithGroups_Equals() {
+        assertEquals(1.0, Lambda1.avgNumberOfStudents());
+    }
+
+    @Test
+    void avgNumberOfStudents_FindAvgInAnEmptyList_Equals() {
+        assertEquals(Double.NaN, Lambda2.avgNumberOfStudents());
+    }
+
+    /*splitGroupsByYear*/
+
+    @Test
+    void splitGroupsByYear_SplitByTwoExistingYears_Equals() {
+        assertEquals(4, Lambda1.splitGroupsByYear(4).get(true).size());
+        assertEquals(3, Lambda1.splitGroupsByYear(4).get(false).size());
+    }
+
+    @Test
+    void splitGroupsByYear_SplitByNonExistingYear_Equals() {
+        assertEquals(0, Lambda1.splitGroupsByYear(1).get(true).size());
+    }
+
+    @Test
+    void splitGroupsByYear_SplitAnEmptyList_Equals() {
+        assertEquals(0, Lambda2.splitGroupsByYear(4).get(true).size());
+        assertEquals(0, Lambda2.splitGroupsByYear(4).get(false).size());
+    }
+
+    /*findTeachersByPosition*/
+
+    @Test
+    void findTeachersByPosition_FindByTwoDifferentPositions_Equals() {
+        assertEquals(4, Lambda1.findTeachersByPosition(AcademicPosition.ASPIRANT).size());
+        assertEquals(3, Lambda1.findTeachersByPosition(AcademicPosition.DOCTORAL_STUDENT).size());
+    }
+
+    @Test
+    void findTeachersByPosition_FindNonExistingGroups_Equals() {
+        assertEquals(0, Lambda1.findTeachersByPosition(AcademicPosition.LECTURER).size());
+    }
+
+    @Test
+    void findTeachersByPosition_SearchesInTheEmptyList_Equals() {
+        assertEquals(0, Lambda2.findTeachersByPosition(AcademicPosition.ASPIRANT).size());
+    }
+
+    /*splitTeachersByPosition*/
+
+    @Test
+    void splitTeachersByPosition_SplitByTwoExistingPositions_Equals() {
+        assertEquals(4, Lambda1.splitTeachersByPosition(AcademicPosition.ASPIRANT).get(true).size());
+        assertEquals(5, Lambda1.splitTeachersByPosition(AcademicPosition.ASPIRANT).get(false).size());
+    }
+
+    @Test
+    void splitTeachersByPosition_SplitByNonExistingPosition_Equals() {
+        assertEquals(0, Lambda1.splitTeachersByPosition(AcademicPosition.LECTURER).get(true).size());
+    }
+
+    @Test
+    void splitTeachersByPosition_SplitAnEmptyList_Equals() {
+        assertEquals(0, Lambda2.splitTeachersByPosition(AcademicPosition.ASPIRANT).get(true).size());
+        assertEquals(0, Lambda2.splitTeachersByPosition(AcademicPosition.ASPIRANT).get(false).size());
+    }
+
 
 //    @Test
 //    void hashCode_CompareEqualDepartmentHashCodes_Equals() {

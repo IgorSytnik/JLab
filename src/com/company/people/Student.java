@@ -8,15 +8,20 @@ public class Student extends ClassWithName {
     private String group;
     private int year;
     public Student(String g, int y) throws IOException {
+        this.name = this.enterName();
         this.group = g;
         this.year = y;
-        this.name = this.enterName();
     }
     public Student(String n, String g, int y) {
+        this.name = n;
         this.group = g;
         this.year = y;
-        this.name = n;
     }
+
+    public int getYear() {
+        return year;
+    }
+
     @Override
     //TODO 11 ("+")
     public String toString() {

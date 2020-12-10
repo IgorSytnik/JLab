@@ -5,6 +5,7 @@ import com.company.Input;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,18 +23,22 @@ public class Group extends ClassWithName {
         this.year = y;
     }
 
-    public boolean addStudent() throws IOException {
-        Student student = new Student(name, year);
-        if(students.contains(student)) {
+    public boolean addStudent(String studentName) {
+        Student s = new Student(studentName, name, year);
+        if(students.contains(s)) {
             System.out.println("This group already has this student ");
             return false;
         } else {
-            students.add(student);
+            students.add(s);
             return true;
         }
     }
 
-    public boolean getStudentsList() {
+    public boolean addStudent() throws IOException {
+        return addStudent(enterName());
+    }
+
+    public boolean showStudentsList() {
         students.sort(this.NameComparator);
         if(students.isEmpty()) {
             System.out.println("The list of students is empty.");
@@ -57,6 +62,10 @@ public class Group extends ClassWithName {
             return null;
         }
         return students.get(i);
+    }
+
+    public List<Student> getStudentsList() {
+        return students;
     }
 
     public int getYear() {

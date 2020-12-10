@@ -104,19 +104,19 @@ class GroupTest {
     }
 
     @Test
-    void getStudentsList_GetEmptyList_False() {
-        assertFalse(obj.getStudentsList());
+    void showStudentsList_GetEmptyList_False() {
+        assertFalse(obj.showStudentsList());
     }
 
     @Test
-    void getStudentsList_GetNotEmptyList_True() throws IOException {
+    void showStudentsList_GetNotEmptyList_True() throws IOException {
         System.setIn(in);
 
         obj.addStudent();
 
         System.setIn(sysInBackup);
 
-        assertTrue(obj.getStudentsList());
+        assertTrue(obj.showStudentsList());
     }
 
 //    @Test

@@ -22,6 +22,8 @@ public class Teacher extends ClassWithName {
         this.position = p;
     }
 
+    public AcademicPosition getPosition() { return position; }
+
     @Override
     public String toString() {
         return name + ", position: " + position;
