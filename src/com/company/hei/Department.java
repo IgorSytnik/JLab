@@ -86,17 +86,26 @@ public class Department extends Institution {
                 .sum();
     }
 
-    public Group maxStudentsInGroup() {
-        return groups.stream()
-                .max(Comparator.comparing(g -> g.getStudentsList().size()))
-                .orElseThrow();
+    public static class EmptyListException
+            extends RuntimeException {
+        public EmptyListException(String errorMessage) {
+            super(errorMessage);
+        }
     }
 
-    public double avgNumberOfStudents() {
+    public Group maxStudentsInGroup() throws EmptyListException {
+        return groups.stream()
+                .max(Comparator.comparing(g -> g.getStudentsList().size()))
+                .orElseThrow(() ->
+                        new EmptyListException("The List of groups is empty"));
+    }
+
+    public double avgNumberOfStudents() throws EmptyListException {
         return groups.stream()
                 .mapToInt(g -> g.getStudentsList().size())
                 .average()
-                .orElse(Double.NaN);
+                .orElseThrow(() ->
+                        new EmptyListException("The List of groups is empty"));
     }
 
     public Map<Boolean, List<Group>> splitGroupsByYear(int year) {

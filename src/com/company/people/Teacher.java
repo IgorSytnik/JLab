@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class Teacher extends ClassWithName {
     private AcademicPosition position;
+
     public Teacher() throws IOException {
         this.name = this.enterName();
         AcademicPosition[] val = AcademicPosition.values();

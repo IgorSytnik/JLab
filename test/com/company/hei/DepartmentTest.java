@@ -256,6 +256,11 @@ class DepartmentTest {
         assertEquals(gTest3, Lambda1.maxStudentsInGroup());
     }
 
+    @Test
+    void maxStudentsInGroup_FindMaxInAnEmptyList_Equals() {
+        assertThrows(Department.EmptyListException.class, Lambda2::maxStudentsInGroup);
+    }
+
     /*avgNumberOfStudents*/
 
     @Test
@@ -265,7 +270,7 @@ class DepartmentTest {
 
     @Test
     void avgNumberOfStudents_FindAvgInAnEmptyList_Equals() {
-        assertEquals(Double.NaN, Lambda2.avgNumberOfStudents());
+        assertThrows(Department.EmptyListException.class, Lambda2::avgNumberOfStudents);
     }
 
     /*splitGroupsByYear*/
