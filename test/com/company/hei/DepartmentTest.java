@@ -252,7 +252,7 @@ class DepartmentTest {
     /*maxStudentsInGroup*/
 
     @Test
-    void maxStudentsInGroup_FindMaxInAListWithGroups_Equals() {
+    void maxStudentsInGroup_FindMaxInAListWithGroups_Equals() throws Department.EmptyListException {
         assertEquals(gTest3, Lambda1.maxStudentsInGroup());
     }
 
@@ -264,7 +264,7 @@ class DepartmentTest {
     /*avgNumberOfStudents*/
 
     @Test
-    void avgNumberOfStudents_FindAvgInAListWithGroups_Equals() {
+    void avgNumberOfStudents_FindAvgInAListWithGroups_Equals() throws Department.EmptyListException {
         assertEquals(1.0, Lambda1.avgNumberOfStudents());
     }
 

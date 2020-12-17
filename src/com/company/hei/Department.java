@@ -87,7 +87,7 @@ public class Department extends Institution {
     }
 
     public static class EmptyListException
-            extends RuntimeException {
+            extends Exception {
         public EmptyListException(String errorMessage) {
             super(errorMessage);
         }
